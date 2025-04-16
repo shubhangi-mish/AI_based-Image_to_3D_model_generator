@@ -1,0 +1,9 @@
+{
+  "$type" : "validation",
+  "schema" : "dc8f06af066e4a7880a5938933236037",
+  "$version" : "1.0",
+  "$id" : "82a958bf5a277217a679c14824974c2f",
+  "$author" : "andrei",
+  "description" : "Define validation for ConfigClass concept",
+  "validations" : { }
+}

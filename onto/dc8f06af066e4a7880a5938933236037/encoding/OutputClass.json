@@ -1,0 +1,10 @@
+{
+  "$type" : "encoding",
+  "schema" : "dc8f06af066e4a7880a5938933236037",
+  "$version" : "1.0",
+  "$id" : "523a8eb9ad1eb66ba6d1add87742cee5",
+  "$author" : "andrei",
+  "description" : "Define encoding for OutputClass concept",
+  "default" : "UTF-8",
+  "encodings" : { }
+}

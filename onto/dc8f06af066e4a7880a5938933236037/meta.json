@@ -1,0 +1,42 @@
+{
+  "schema" : "dc8f06af066e4a7880a5938933236037",
+  "$version" : "1.0",
+  "$author" : "andrei",
+  "$name" : "test-ai",
+  "$description" : null,
+  "storage" : {
+    "00f7a3dfaaa9073f029302b9fbb4191e" : {
+      "STRUCTURE" : "structure/InputClass.json",
+      "ENCODING" : "encoding/InputClass.json",
+      "SUBSET" : "subset/InputClass.json",
+      "RESTRICTION" : "restriction/InputClass.json",
+      "DEFAULTS" : "defaults/InputClass.json",
+      "VALIDATION" : "validation/InputClass.json",
+      "INSTRUCTION" : "instruction/InputClass.json",
+      "CONNECTION" : "connection/InputClass.json",
+      "NAMING" : "naming/InputClass.json"
+    },
+    "82a958bf5a277217a679c14824974c2f" : {
+      "STRUCTURE" : "structure/ConfigClass.json",
+      "ENCODING" : "encoding/ConfigClass.json",
+      "SUBSET" : "subset/ConfigClass.json",
+      "RESTRICTION" : "restriction/ConfigClass.json",
+      "DEFAULTS" : "defaults/ConfigClass.json",
+      "VALIDATION" : "validation/ConfigClass.json",
+      "INSTRUCTION" : "instruction/ConfigClass.json",
+      "CONNECTION" : "connection/ConfigClass.json",
+      "NAMING" : "naming/ConfigClass.json"
+    },
+    "523a8eb9ad1eb66ba6d1add87742cee5" : {
+      "STRUCTURE" : "structure/OutputClass.json",
+      "ENCODING" : "encoding/OutputClass.json",
+      "SUBSET" : "subset/OutputClass.json",
+      "RESTRICTION" : "restriction/OutputClass.json",
+      "DEFAULTS" : "defaults/OutputClass.json",
+      "VALIDATION" : "validation/OutputClass.json",
+      "INSTRUCTION" : "instruction/OutputClass.json",
+      "CONNECTION" : "connection/OutputClass.json",
+      "NAMING" : "naming/OutputClass.json"
+    }
+  }
+}

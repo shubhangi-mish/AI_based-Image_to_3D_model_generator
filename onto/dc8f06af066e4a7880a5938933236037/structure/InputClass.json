@@ -1,0 +1,20 @@
+{
+  "$type" : "structure",
+  "schema" : "dc8f06af066e4a7880a5938933236037",
+  "$version" : "1.0",
+  "$id" : "00f7a3dfaaa9073f029302b9fbb4191e",
+  "$author" : "andrei",
+  "description" : "Define structure for InputClass concept",
+  "name" : "InputClass",
+  "classification" : null,
+  "extends" : null,
+  "selfCardinality" : null,
+  "properties" : {
+    "prompt" : "String",
+    "attachments" : "String"
+  },
+  "cardinality" : {
+    "attachments" : "1|2147483647"
+  },
+  "inclusion" : { }
+}
