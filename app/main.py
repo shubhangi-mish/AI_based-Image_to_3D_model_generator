@@ -5,7 +5,8 @@ from ontology_dc8f06af066e4a7880a5938933236037.config import ConfigClass
 from ontology_dc8f06af066e4a7880a5938933236037.input import InputClass
 from ontology_dc8f06af066e4a7880a5938933236037.output import OutputClass
 from openfabric_pysdk.context import State
-from core.local_llm import run_local_llm  # Importing the local LLM handler
+from core.local_llm import run_local_llm
+from core.txt_to_img import run_text_to_image 
 from core.stub import Stub
 
 # ----------------------------------------------------------
@@ -26,7 +27,7 @@ def config(configuration: Dict[str, ConfigClass], state: State) -> None:
 # ----------------------------------------------------------
 def execute(request: InputClass, response: OutputClass, state: State) -> Dict[str, str]:
     logging.info(f"Received prompt: {request.prompt}")
-
+  
     user_config: ConfigClass = configurations.get('super-user', None)
     app_ids = user_config.app_ids if user_config else []
     stub = Stub(app_ids)
@@ -35,12 +36,18 @@ def execute(request: InputClass, response: OutputClass, state: State) -> Dict[st
     prompt = request.prompt
     llm_response = run_local_llm(prompt)
 
+    text2image_response = run_text_to_image(llm_response, app_ids)
+    
+    print(text2image_response)
     # Prepare the response as a dictionary
-    response_dict = {
-        "message": llm_response
-    }
+    full_message = (
+        f"🧠 Prompt: {prompt}\n\n"
+        f"💬 LLM Response:\n{llm_response}\n\n"
+        f"🖼️ Text-to-Image Result:\n{text2image_response}"
+    )
 
-    # Return the dictionary instead of OutputClass
-    return response_dict
+    return {
+        "message": full_message
+    }
 
 

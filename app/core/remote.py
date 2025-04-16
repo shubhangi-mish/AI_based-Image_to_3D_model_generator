@@ -37,7 +37,7 @@ class Remote:
         Returns:
             Remote: The current instance for chaining.
         """
-        self.client = Proxy(self.proxy_url, self.proxy_tag, ssl_verify=False)
+        self.client = Proxy(self.proxy_url, self.proxy_tag)
         return self
 
     # ----------------------------------------------------------------------
