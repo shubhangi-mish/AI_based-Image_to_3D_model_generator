@@ -7,6 +7,7 @@ from ontology_dc8f06af066e4a7880a5938933236037.output import OutputClass
 from openfabric_pysdk.context import State
 from core.local_llm import run_local_llm
 from core.txt_to_img import run_text_to_image 
+from core.img_to_3d import run_image_to_3d
 from core.stub import Stub
 
 # ----------------------------------------------------------
@@ -36,18 +37,27 @@ def execute(request: InputClass, response: OutputClass, state: State) -> Dict[st
     prompt = request.prompt
     llm_response = run_local_llm(prompt)
 
+    # Get the Text-to-Image result
     text2image_response = run_text_to_image(llm_response, app_ids)
-    
     print(text2image_response)
-    # Prepare the response as a dictionary
+
+    # Now extract the result (blob reference) directly from the response
+    image_blob_reference = text2image_response.get("result", "")  # Extract the image blob reference (not URL)
+
+    if image_blob_reference:
+        # Call the next function to transform the image into a 3D model
+        image_to_3d_response = run_image_to_3d(image_blob_reference, app_ids)
+    else:
+        image_to_3d_response = {"message": "Image blob reference not found in Text-to-Image response."}
+
+    # Prepare the response as a dictionary, combining both steps
     full_message = (
         f"🧠 Prompt: {prompt}\n\n"
         f"💬 LLM Response:\n{llm_response}\n\n"
-        f"🖼️ Text-to-Image Result:\n{text2image_response}"
+        f"🖼️ Text-to-Image Result:\n{image_blob_reference}\n\n"  # Display the image blob reference
+        f"🔲 Image-to-3D Result:\n{image_to_3d_response['message']}"
     )
 
     return {
         "message": full_message
     }
-
-

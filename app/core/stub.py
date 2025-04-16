@@ -132,3 +132,4 @@ class Stub:
             return _output
         else:
             raise ValueError("Type must be either 'input' or 'output'")
+

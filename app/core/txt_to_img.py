@@ -30,7 +30,7 @@ def run_text_to_image(prompt: str, app_ids: list) -> Dict[str, str]:
         
         # Check for the "result" key, which contains the data blob URL
         if 'result' in result:
-            return {"message": f"Image generated successfully. You can access the result at: {result['result']}"}
+            return {"result": result['result']} 
         else:
             return {"message": "No result found in the response."}
 
