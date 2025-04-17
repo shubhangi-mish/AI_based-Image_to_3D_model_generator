@@ -31,7 +31,7 @@ def run_image_to_3d(image_blob_reference: str, app_ids: list) -> Dict[str, str]:
         
         # Check for the "result" key, which contains the 3D model data or path
         if 'generated_object' in result:
-            return {"message": f"3D model created successfully. You can access the result at: {result['generated_object']}"}
+            return {"message": result['generated_object']}
         elif 'video_object' in result:
             return {"message": f"3D model video created successfully. You can access the video at: {result['video_object']}"}
         else:

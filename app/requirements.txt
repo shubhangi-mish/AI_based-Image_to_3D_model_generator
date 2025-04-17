@@ -1,0 +1,4 @@
+huggingface_hub
+llama-cpp-python
+streamlit
+openfabric-pysdk
