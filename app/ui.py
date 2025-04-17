@@ -3,17 +3,13 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-# Set page config
 st.set_page_config(page_title="Prompt-to-3D Generator", layout="centered")
 
-# Initialize chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Display title
 st.title("🎨 Prompt to 3D Chat Interface")
 
-# Step 1: Configure backend on startup
 CONFIG_URL = "http://localhost:8888/config?uid=super-user"
 EXEC_URL = "http://localhost:8888/execution"
 APP_IDS = [
@@ -36,20 +32,16 @@ def configure_backend():
     except Exception as e:
         st.error(f"🔥 Error while connecting to backend: {e}")
 
-# Only configure once
 if "configured" not in st.session_state:
     configure_backend()
     st.session_state.configured = True
 
-# Step 2: Prompt Input
 with st.form("prompt_form", clear_on_submit=True):
-    user_input = st.text_input("🗣 Enter your prompt:", placeholder="e.g., Describe a fashion model in 60 words")
+    user_input = st.text_input("🗣 Enter your prompt:", placeholder="e.g., Describe a car")
     submitted = st.form_submit_button("Send")
 
-# Fetch Resource Data Function
 def fetch_resource_data(resource_id, resource_type="image"):
     try:
-        # Select API based on resource type
         if resource_type == "image":
             url = f"https://c25dcd829d134ea98f5ae4dd311d13bc.node3.openfabric.network/resource?reid={resource_id}"
         elif resource_type == "model":
@@ -57,16 +49,14 @@ def fetch_resource_data(resource_id, resource_type="image"):
         else:
             return None
 
-        return url  # Return URL directly, no need to fetch the content here
+        return url 
     except Exception as e:
         st.error(f"🔥 Error while fetching resource: {e}")
         return None
 
-# Step 3: Process and Display
 if submitted and user_input:
     st.session_state.chat_history.append(("user", user_input))
 
-    # Send to execution API
     try:
         response = requests.post(
             EXEC_URL,
@@ -77,14 +67,12 @@ if submitted and user_input:
             result = response.json()
             full_message = result.get("message", "")
 
-            # Parse response
             try:
                 prompt_section = full_message.split("🧠 Prompt:")[1].split("💬 LLM Response:")[0].strip()
                 response_section = full_message.split("💬 LLM Response:")[1].split("🖼️ Text-to-Image Result:")[0].strip()
                 image_url = full_message.split("🖼️ Text-to-Image Result:")[1].split("🔲 Image-to-3D Result:")[0].strip()
                 model_url = full_message.split("🔲 Image-to-3D Result:")[1].strip()
 
-                # Get the resource URLs
                 image_resource_url = fetch_resource_data(image_url, resource_type="image")
                 model_resource_url = fetch_resource_data(model_url, resource_type="model")
 
@@ -96,17 +84,16 @@ if submitted and user_input:
                 }
 
             except Exception as parse_err:
-                model_output = {"error": f"❌ Failed to parse response: {parse_err}\n\nRaw message: {full_message}"}
+                model_output = {"error": f"Failed to parse response: {parse_err}\n\nRaw message: {full_message}"}
 
         else:
-            model_output = {"error": f"⚠️ Backend Error: {response.status_code} - {response.text}"}
+            model_output = {"error": f"Backend Error: {response.status_code} - {response.text}"}
 
     except Exception as e:
-        model_output = {"error": f"❌ Request failed: {e}"}
+        model_output = {"error": f"Request failed: {e}"}
 
     st.session_state.chat_history.append(("bot", model_output))
 
-# Step 4: Chat History Display
 st.markdown("### 💬 Conversation")
 for role, msg in st.session_state.chat_history:
     if role == "user":
@@ -118,8 +105,7 @@ for role, msg in st.session_state.chat_history:
             else:
                 st.markdown(f"**🧠 Prompt:** {msg['prompt']}")
                 st.markdown(f"**🤖 LLM Response:** {msg['response']}")
-
-                # Display clickable Image and Model URLs
+                
                 if msg["image_url"]:
                     st.markdown("📸 **Text-to-Image Result Link:**")
                     st.markdown(f"[Open Text-to-Image]({msg['image_url']})", unsafe_allow_html=True)

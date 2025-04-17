@@ -14,26 +14,23 @@ def run_image_to_3d(image_blob_reference: str, app_ids: list) -> Dict[str, str]:
         Dict[str, str]: A dictionary with the generated message or error.
     """
     try:
-        # Initialize the Stub for making the remote call
         stub = Stub(app_ids)
         
         if not app_ids:
             return {"message": "No app IDs provided."}
 
-        app_id = app_ids[1]  # Assuming first app is Image-to-3D
+        app_id = app_ids[1]  
         
-        # Corrected data: Use the blob reference (string) instead of image URL
         data = {
-            "input_image": image_blob_reference  # Pass the image reference here
+            "input_image": image_blob_reference  
         }
 
         result = stub.call(app_id, data)
         
-        # Check for the "result" key, which contains the 3D model data or path
         if 'generated_object' in result:
             return {"message": result['generated_object']}
         elif 'video_object' in result:
-            return {"message": f"3D model video created successfully. You can access the video at: {result['video_object']}"}
+            return {"message": result['video_object']}
         else:
             return {"message": "No result found in the response."}
 

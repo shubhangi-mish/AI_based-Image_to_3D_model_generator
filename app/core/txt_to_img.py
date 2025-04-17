@@ -1,5 +1,3 @@
-# core/text_to_image.py
-
 from core.stub import Stub
 import logging
 from typing import Dict
@@ -20,15 +18,14 @@ def run_text_to_image(prompt: str, app_ids: list) -> Dict[str, str]:
         if not app_ids:
             return {"message": "No app IDs provided."}
 
-        app_id = app_ids[0]  # Assuming first app is text-to-image
+        app_id = app_ids[0]  
         data = {
             "prompt": prompt,
             "attachments": []
         }
 
         result = stub.call(app_id, data)
-        
-        # Check for the "result" key, which contains the data blob URL
+      
         if 'result' in result:
             return {"result": result['result']} 
         else:

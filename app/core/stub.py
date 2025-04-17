@@ -43,19 +43,16 @@ class Stub:
                 # Fetch manifest
                 manifest = requests.get(f"https://{base_url}/manifest").json()
                 logging.info(f"[{app_id}] Manifest loaded.")
-                print(manifest)
                 self._manifest[app_id] = manifest
 
                 # Fetch input schema
                 input_schema = requests.get(f"https://{base_url}/schema?type=input").json()
                 logging.info(f"[{app_id}] Input schema loaded.")
-                print(input_schema)
 
                 # Fetch output schema
                 output_schema = requests.get(f"https://{base_url}/schema?type=output").json()
                 logging.info(f"[{app_id}] Output schema loaded.")
                 self._schema[app_id] = (input_schema, output_schema)
-                print(output_schema)
 
                 # Establish Remote WebSocket connection
                 self._connections[app_id] = Remote(f"wss://{base_url}", f"{app_id}-proxy").connect()

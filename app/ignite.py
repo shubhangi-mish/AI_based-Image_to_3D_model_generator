@@ -8,7 +8,6 @@ def run_backend():
     Starter.ignite(debug=False, host="0.0.0.0", port=PORT)
 
 def run_frontend():
-    # Wait a moment to ensure backend is ready
     time.sleep(3)
     subprocess.run(["streamlit", "run", "ui.py", "--server.port=8501"])
 

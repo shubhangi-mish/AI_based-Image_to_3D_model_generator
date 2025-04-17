@@ -33,28 +33,26 @@ def execute(request: InputClass, response: OutputClass, state: State) -> Dict[st
     app_ids = user_config.app_ids if user_config else []
     stub = Stub(app_ids)
 
-    # Get LLM response by calling the run_local_llm function from core.llm_handler
+    # Getting LLM response
     prompt = request.prompt
     llm_response = run_local_llm(prompt)
 
-    # Get the Text-to-Image result
+    # Getting the Text-to-Image result
     text2image_response = run_text_to_image(llm_response, app_ids)
     print(text2image_response)
 
-    # Now extract the result (blob reference) directly from the response
-    image_blob_reference = text2image_response.get("result", "")  # Extract the image blob reference (not URL)
+    image_blob_reference = text2image_response.get("result", "")  
 
     if image_blob_reference:
-        # Call the next function to transform the image into a 3D model
+        # Getting result from image to 3D app
         image_to_3d_response = run_image_to_3d(image_blob_reference, app_ids)
     else:
         image_to_3d_response = {"message": "Image blob reference not found in Text-to-Image response."}
 
-    # Prepare the response as a dictionary, combining both steps
     full_message = (
         f"🧠 Prompt: {prompt}\n\n"
         f"💬 LLM Response:\n{llm_response}\n\n"
-        f"🖼️ Text-to-Image Result:\n{image_blob_reference}\n\n"  # Display the image blob reference
+        f"🖼️ Text-to-Image Result:\n{image_blob_reference}\n\n" 
         f"🔲 Image-to-3D Result:\n{image_to_3d_response['message']}"
     )
 
