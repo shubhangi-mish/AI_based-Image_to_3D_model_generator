@@ -110,7 +110,7 @@ Synced to Pinecone for future memory
 
 - when the execution api executes this is executed first it sends the prompt to the local llm and gets the output.
 - LLM used in this case is tinyllama-1.1b-chat-v1.0.Q4_K_M.ggu
-(okay so guilty here but, I dont like this LLM really, responses are not upto the mark but it is the most lightweight llm and therefore, saves on time and execution and doesn't become so heavy that it doesn't let execution API Execute)
+(okay, guilty here but, I dont like this LLM really, responses are not upto the mark but it is the most lightweight llm and therefore, saves on time and execution and doesn't become so heavy that it doesn't let execution API execute, a better LLM with this prompt could have been so much better but for my case for just the demo I would rather choose something faster and doesm't heat up my laptop (no gpu))
 
 ### ✅ `core/txt_to_img.py`
 
@@ -143,12 +143,16 @@ Synced to Pinecone for future memory
 | Feature                 | Status   |
 |------------------------|----------|
 | Openfabric SDK         | ✅ Used   |
+| Voice to text interaction| ✅ Done   |
 | Dynamic app execution  | ✅ Done   |
 | Local LLM integration  | ✅ Done   |
 | Pinecone long-term memory | ✅ Done   |
 | Vector deduplication   | ✅ Done   |
 | Session context        | ✅ Active |
 | File sync + Watcher    | ✅ Done   |
+| Streamlit gui interface| ✅ Done   |
+| Clickable resource URLs in local browser| ✅ Done   |
+| Proper logs            | ✅ Done   |
 
 ---
 
@@ -185,15 +189,11 @@ Synced to Pinecone for future memory
 - 3. bash start.sh
 Voila! everything is working
 
-✅ Code is original, modular, and clear
+✅ Code is original, modular, and clear.
 
 ✅ Fully working and testable
 
 ✅ Meets all checklist points
-
-✅ Final Verdict
-“Don’t build an app. Build magic.”
-Done. From local prompt interpretation to stunning 3D generation and persistent memory — this project showcases the complete pipeline in action.
 
 
 ## Screenshots and logs
