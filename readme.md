@@ -110,7 +110,7 @@ Synced to Pinecone for future memory
 
 - when the execution api executes this is executed first it sends the prompt to the local llm and gets the output.
 - LLM used in this case is tinyllama-1.1b-chat-v1.0.Q4_K_M.ggu
-(okay, guilty here but, I dont like this LLM really, responses are not upto the mark but it is the most lightweight llm and therefore, saves on time and execution and doesn't become so heavy that it doesn't let execution API execute, a better LLM with this prompt could have been so much better but for my case for just the demo I would rather choose something faster and doesm't heat up my laptop (no gpu))
+(Okay, guilty here but, I dont like this LLM really, responses are not upto the mark but it is the most lightweight llm and therefore, saves on time and execution and doesn't become so heavy that it doesn't let execution API execute, a better LLM with this prompt could have been so much better but for my case for just the demo I would rather choose something faster and doesm't heat up my laptop (no gpu))
 
 ### ✅ `core/txt_to_img.py`
 
@@ -144,14 +144,16 @@ Synced to Pinecone for future memory
 |------------------------|----------|
 | Openfabric SDK         | ✅ Used   |
 | Voice to text interaction| ✅ Done   |
-| Dynamic app execution  | ✅ Done   |
 | Local LLM integration  | ✅ Done   |
+| Dynamic app execution  | ✅ Done   |
+| Text to Image  | ✅ Done   |
+| Image to 3D  | ✅ Done   |
+| Streamlit gui interface| ✅ Done   |
+| Clickable resource URLs in local browser| ✅ Done   |
 | Pinecone long-term memory | ✅ Done   |
 | Vector deduplication   | ✅ Done   |
 | Session context        | ✅ Active |
 | File sync + Watcher    | ✅ Done   |
-| Streamlit gui interface| ✅ Done   |
-| Clickable resource URLs in local browser| ✅ Done   |
 | Proper logs            | ✅ Done   |
 
 ---
