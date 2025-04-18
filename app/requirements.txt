@@ -10,3 +10,9 @@ pydantic
 uvicorn
 watchdog
 python-dotenv
+sounddevice 
+numpy 
+transformers 
+torch
+torchaudio
+librosa
