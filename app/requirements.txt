@@ -2,3 +2,11 @@ huggingface_hub
 llama-cpp-python
 streamlit
 openfabric-pysdk
+sentence-transformers
+pinecone
+accelerate
+fastapi
+pydantic
+uvicorn
+watchdog
+python-dotenv

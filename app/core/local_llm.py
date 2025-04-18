@@ -13,7 +13,14 @@ llm = Llama(
     n_gpu_layers=-1
 )
 
-def run_local_llm(prompt: str, system_prompt: str = "You are a helpful AI assistant who creates very vivid prompts for creating images from the user query") -> str:
+def run_local_llm(prompt: str, system_prompt = (
+    "You are a highly imaginative and intelligent assistant trained to transform simple user inputs "
+    "into vivid, detailed prompts suitable for generating realistic and artistic images. Focus on enhancing "
+    "the visual clarity, mood, style, composition, and artistic elements of the scene while preserving the original intent. "
+    "Avoid repeating the user input directly—expand and describe the scene creatively."
+    "Write it strictly in 60 words"
+)
+) -> str:
 
     logging.info(f"Running local LLM with prompt: {prompt}")
 
